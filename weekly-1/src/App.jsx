@@ -1,7 +1,7 @@
 import "./App.css";
 import React, { useState, useEffect } from "react";
 
-import styled, { createGlobalStyle } from "styled-components";
+import styled, { createGlobalStyle, keyframes } from "styled-components";
 
 const boys = [
   "Max", "Charlie", "Rocky", "Buddy", "Duke", "Milo", "Toby", "Finn", "Leo", "Diesel",
@@ -31,6 +31,14 @@ const GlobalStyle = createGlobalStyle`
     margin: auto;
   }
 `;
+
+const slideUp = keyframes`
+0% {
+opacity : 0;
+transform: translateY(20px);}
+100% { opacity: 1;
+transform: translateY(0);
+}`;
 
 const Form = styled.form`
   border: 1px solid black;
@@ -79,26 +87,41 @@ const ButtonContainer = styled.div`
   justify-content: ${({ justify }) => justify || "flex-start"};
   gap: 0.23569rem;
   flex-wrap: wrap;
+button {
+  padding: 10px 15px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  cursor: pointer;
+  font-size: 14px;
+  border-radius: var(--Corner-Medium, 0.75rem);
+  outline: none;
 
-  button {
-    padding: 10px 15px;
-    border: 1px solid #ccc;
-    background-color: #fff;
-    cursor: pointer;
-    font-size: 14px;
-    border-radius: 0;
-    outline: none;
-
-    &:hover {
-      background-color: #e0e0e0;
-    }
-
-    &.selected {
-      background-color: #ddd;
-      font-weight: bold;
-      border: 2px solid #000;
-    }
+  &:hover {
+    background-color: #FC9E88;
+    border: 0px;
+    border-radius: var(--Corner-Medium, 0.75rem);
+    box-shadow: 0px 4px 12.5px 7px rgba(255, 205, 194, 0.66);
+    animation: hoverEffect 0.5s ease-in-out;
   }
+
+  &.selected {
+    background-color: #F85935;
+    font-weight: bold;
+    border-radius: var(--Corner-Medium, 0.75rem);
+  }
+}
+@keyframes hoverEffect {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
 `;
 
 const NameContainer = styled.div`
@@ -107,6 +130,7 @@ const NameContainer = styled.div`
   color: #333;
   text-transform: uppercase;
   margin: auto;
+   animation: ${slideUp} 0.5s ease-in-out;
 `;
 
 export default function App() {
@@ -156,8 +180,7 @@ export default function App() {
         <Form>
           <H1>Select a name for your Pet</H1>
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse
-            varius enim in eros.
+          Looking for the perfect name for your furry friend? Use this app to explore unique and fun names for your pet. Choose a name you love, save it to your list, or come back to it later. Let's find the perfect match for your new companion!
           </p>
           <ContainerBottom>
             <p className="label">Gender</p>
@@ -178,7 +201,7 @@ export default function App() {
               </button>
             </ButtonContainer>
             <p className="label">Yay is for Yes, Nay is for no, Meh is maybe</p>
-            <NameContainer>{currentWord}</NameContainer>
+            <NameContainer key={currentWord}>{currentWord}</NameContainer>
             <ButtonContainer justify="center">
               <button type="button" onClick={() => handleApproval("yes")}>
                 Yay 👍🏻
