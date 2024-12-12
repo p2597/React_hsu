@@ -1,0 +1,115 @@
+
+
+header{
+  background-color: #fdfdfd;
+padding: 10px;
+
+
+}
+
+nav {
+display: flex;
+flex-direction: row;
+justify-content: space-between;
+align-items: center;
+  height: 100%;
+ 
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  margin-top: 10px;
+}
+
+
+body {
+  background-color: white;
+  margin: 0;
+min-width: 100%;
+  min-height: 100vh;
+  font-family: Inter;
+}
+.search-container {
+  display: flex; /* Align the input and button side by side */
+  align-items: center; /* Vertically align the elements */
+  justify-content: flex-start; /* Ensure they align from the left */
+}
+
+.searchbar {
+  border-radius: 1.75rem 0 0 1.75rem; /* Rounded corners on the left side only */
+  border: 1px solid #c4c4c4;
+  background: #fff;
+  width: 37.8125rem;
+  height: 2.4375rem;
+  flex-shrink: 0;
+  outline: none; /* Remove focus outline */
+  padding: 0 1rem; /* Add padding for better spacing inside the input */
+  box-sizing: border-box; /* Ensure padding doesn't affect width */
+}
+
+.searchBtn {
+  border-radius: 0rem 1.75rem 1.75rem 0rem;
+  border: 1px solid #c4c4c4;
+  background: #f8f8f8 url('/week-2-project/src/assets/search-icon.png') no-repeat center;
+  display: flex;
+  width: 4.125rem;
+  height: 2.4375rem; 
+  align-items: center;
+  justify-content: center; 
+  cursor: pointer;
+}
+.video-container {
+  width: 371px; 
+  height: auto; 
+  display: flex;
+  flex-direction: column;
+  border-radius: 16px; 
+ 
+  overflow: hidden; 
+}
+
+.video-wrapper {
+  background: url('src/assets/image.png') no-repeat center/cover;
+  border-radius: 16px; 
+  overflow: hidden; 
+}
+
+.content-wrapper{
+  color: #000;
+font-size: 1rem;
+font-style: normal;
+font-weight: 400;
+display: flex;
+flex-direction: column;
+width: 100%;
+gap: 5px;
+height: auto;
+padding: 0 10px 10px 10px;
+}
+
+.video-section{
+  display: grid;
+  padding: 5%;
+    grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.tag-container{
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+.tags{
+  border-radius:1.75rem ;
+  border: 1px solid #c4c4c4;
+  background: #f8f8f8;
+  display: flex;
+  width: 6rem;
+  height: 3rem; 
+  align-items: center;
+  justify-content: center; 
+  cursor: pointer;
+}
