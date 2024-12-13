@@ -1,8 +1,11 @@
-import { useForm } from 'react-hook-form';
+import { useForm } from "react-hook-form"
 
-export function Search({ title, onSubmit }) {
+export function SearchForm({onSearch }) {
     const { register, handleSubmit } = useForm();
 
+    const onSubmit = (data) =>{ 
+      onSearch(data.search);
+    };
     return (
         <form onSubmit={handleSubmit(onSubmit)}>
          <div className="search-container">
@@ -14,3 +17,4 @@ export function Search({ title, onSubmit }) {
         </form>
     );
 }
+
