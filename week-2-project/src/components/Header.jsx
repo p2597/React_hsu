@@ -1,12 +1,8 @@
-
 import { SearchForm } from './SearchForm';
-import { useSearchParams } from 'react-router';
+import { useSearchParams } from 'react-router'; 
 
-
-export default function Header({  }) {
-   
-    
-const [ searchParams, setSearchParams] = useSearchParams();
+export default function Header() {
+    const [searchParams, setSearchParams] = useSearchParams();
 
     const handleSearch = (query) => {
         setSearchParams({ q: query }); 
@@ -16,7 +12,7 @@ const [ searchParams, setSearchParams] = useSearchParams();
         <header>
             <nav>
                 <img src="/src/assets/ytube.png" width="150px" height="40px" alt="YouTube Logo" />
-                <SearchForm onSearch={handleSearch} />
+                <SearchForm onSearch={handleSearch} /> 
             </nav>
         </header>
     );
