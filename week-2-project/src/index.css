@@ -32,21 +32,21 @@ min-width: 100%;
   font-family: 'Roboto', sans-serif;
 }
 .search-container {
-  display: flex; /* Align the input and button side by side */
-  align-items: center; /* Vertically align the elements */
-  justify-content: flex-start; /* Ensure they align from the left */
+  display: flex; 
+  align-items: center; 
+  justify-content: flex-start;
 }
 
 .searchbar {
-  border-radius: 1.75rem 0 0 1.75rem; /* Rounded corners on the left side only */
+  border-radius: 1.75rem 0 0 1.75rem; 
   border: 1px solid #c4c4c4;
   background: #fff;
   width: 37.8125rem;
   height: 2.4375rem;
   flex-shrink: 0;
-  outline: none; /* Remove focus outline */
-  padding: 0 1rem; /* Add padding for better spacing inside the input */
-  box-sizing: border-box; /* Ensure padding doesn't affect width */
+  outline: none;
+  padding: 0 1rem; 
+  box-sizing: border-box;
 }
 
 .searchBtn {
