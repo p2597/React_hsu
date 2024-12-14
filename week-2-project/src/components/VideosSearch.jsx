@@ -1,15 +1,72 @@
 import useSWR from 'swr';
 import axios from 'axios';
+import styled from 'styled-components';
+import { motion } from 'framer-motion';
 
 const fetcher = (url) => axios.get(url).then((res) => res.data);
 
+// Styled Components
+const FeaturedVideosContainer = styled(motion.div)`
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    padding: 10px;
+`;
+
+const VideoItem = styled(motion.div)`
+    display: flex;
+    gap: 15px;
+    align-items: flex-start;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.2s ease;
+
+    &:hover {
+        box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+    }
+`;
+
+const ImageWrapper = styled.div`
+    width: 150px;
+    height: 100%;
+    border-radius: 10px;
+    overflow: hidden;
+`;
+
+const Image = styled.img`
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+`;
+
+const TextWrapper = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+`;
+
+const Title = styled.h3`
+    font-size: 16px;
+    font-weight: bold;
+    margin: 0;
+    color: #333;
+`;
+
+const Description = styled.p`
+    font-size: 14px;
+    color: #666;
+`;
+
 export default function VideosSearch({ searchValue }) {
-    const { data, error, isLoading } = useSWR(
+    const { data, error } = useSWR(
         searchValue ? `https://harbour.dev.is/api/search?q=${searchValue}` : null,
         fetcher
     );
 
-    if (isLoading) {
+    if (!data && !error) {
         return <p>Uno momento...</p>;
     }
 
@@ -20,28 +77,38 @@ export default function VideosSearch({ searchValue }) {
     const videos = data?.results || data || []; // Adjust depending on API response structure
 
     return (
-        <div className="featured-v-flex">
+        <FeaturedVideosContainer
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.5 }}
+            className="featured-v-flex"
+        >
             {videos.length > 0 ? (
                 videos.map((video, index) => (
-                    <div key={index} className="featured-video-item">
+                    <VideoItem
+                        key={index}
+                        whileHover={{ scale: 1.03 }}
+                        transition={{ type: 'spring', stiffness: 300 }}
+                        className="featured-video-item"
+                    >
                         {/* Image Wrapper */}
-                        <div className="f-img-wrapper">
-                            <img
-                                src={video.snippet.thumbnails.url}// Replace with the correct thumbnail field
+                        <ImageWrapper className="f-img-wrapper">
+                            <Image
+                                src={video.snippet.thumbnails.url} // Replace with the correct thumbnail field
                                 alt={video.title || 'Featured Video'}
                             />
-                        </div>
+                        </ImageWrapper>
 
                         {/* Text Wrapper */}
-                        <div className="f-txt-wrapper">
-                            <h3>{video.title || 'No Title Available'}</h3>
-                            <p>{video.description || 'No Description Available'}</p>
-                        </div>
-                    </div>
+                        <TextWrapper className="f-txt-wrapper">
+                            <Title>{video.title || 'No Title Available'}</Title>
+                            <Description>{video.description || 'No Description Available'}</Description>
+                        </TextWrapper>
+                    </VideoItem>
                 ))
             ) : (
                 <p>No videos found. Try another search query.</p>
             )}
-        </div>
+        </FeaturedVideosContainer>
     );
 }

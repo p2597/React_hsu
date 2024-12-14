@@ -5,7 +5,7 @@ export default function Tag() {
         <div className="content">
        <div className="tag-container">
         <div className="tags"> All </div>
-        <div className="tags"> Music </div>
+        <div className="tags"> Featured Playlist </div>
         <div className="tags"> Podcast </div>
          </div></div>
     );
